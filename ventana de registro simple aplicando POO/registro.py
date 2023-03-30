@@ -15,7 +15,8 @@ class FrameRegistro(Frame):
         cantidad = self.txtCantidad.get()
         total = int(valor) * int(cantidad)
         
-        mensaje = 'se registraron ' + cantidad + ' unidades de ' + nombre + ' con un costo de $ '+ valor + ' el valor total fue de ' + str(total)
+        mensaje = 'se registraron ' + cantidad + ' unidades de ' + nombre + ' con un costo de $ '+ valor \
+            + ' el valor total fue de ' + str(total)
         return messagebox.showinfo('Registro exitoso !!', mensaje)
 
 
