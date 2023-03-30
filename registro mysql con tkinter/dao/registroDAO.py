@@ -8,6 +8,7 @@ class EmpleadoDAO():
 
     # registro de empleados en la base de datos
     def registrarEmpleado(self, empleado_vo: Empleado):
+        
         cur = self.conn.cursor()
         mensaje = "INSERT INTO empleado(id_empleado, nombre, profesion, sueldo, direccion, telefono) \
             values ('{}','{}','{}', '{}', '{}', '{}' )".format(
@@ -21,7 +22,8 @@ class EmpleadoDAO():
         cur.execute(mensaje)
         self.conn.commit()
         cur.close()
-        print('se registro el empleado con exito !!')
+        
+        return 'ok'
 
     def listaEmpleado(self):
         pass

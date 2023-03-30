@@ -1,4 +1,4 @@
-from tkinter import Tk, messagebox, Frame, Entry, Label, Button
+from tkinter import messagebox, Frame, Entry, Label, Button, END
 from dao.registroDAO import EmpleadoDAO
 from vo.empleado import Empleado
 
@@ -15,8 +15,6 @@ class RegistroEmpleado(Frame):
 
     def _registrar(self):
         emp = Empleado()
-        print(self.txt_id.get())
-
         emp._setIdEmpleado(self.txt_id.get())   
         emp._setNombre(self.txt_nombre.get().upper())
         emp._setProfesion(self.txt_profesion.get().upper())
@@ -25,7 +23,23 @@ class RegistroEmpleado(Frame):
         emp._setTelefono(self.txt_telefono.get())
         
         daoEmpleado = EmpleadoDAO()
-        daoEmpleado.registrarEmpleado(emp)
+
+        validacion_bd = daoEmpleado.registrarEmpleado(emp)
+        
+        if  validacion_bd == 'ok':
+            messagebox.showinfo('Registro exitoso !!', 'se registro el empleado correctamente !!')
+            self._limpiar()
+        else:
+            messagebox.showinfo('ERROR !!', 'No se pudo registrar el usuario')
+
+    def _limpiar(self):
+        # limpia los campos 
+        self.txt_id.delete('0', END)
+        self.txt_nombre.delete('0', END)
+        self.txt_profesion.delete('0', END)
+        self.txt_sueldo.delete('0', END)
+        self.txt_telefono.delete('0', END)
+        self.txt_direccion.delete('0', END)
 
     def _crearFrame(self):
 
