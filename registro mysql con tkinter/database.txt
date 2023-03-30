@@ -1,0 +1,12 @@
+CREATE DATABASE empresa;
+
+USE empresa;
+
+CREATE TABLE empleado(
+id_empleado CHAR(10),
+nombre VARCHAR(25),
+profesion VARCHAR(25),
+sueldo INT,
+direccion VARCHAR(50),
+telefono CHAR(10),
+PRIMARY KEY (id_empleado));
