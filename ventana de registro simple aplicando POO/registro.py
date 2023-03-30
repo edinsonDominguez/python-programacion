@@ -1,5 +1,4 @@
-from tkinter import *
-from tkinter import messagebox
+from tkinter import Label, Entry, Button, messagebox, Frame
 
 class FrameRegistro(Frame):
 
