@@ -2,14 +2,14 @@
 class Empleado():
 
     def __init__(self):
-        self.id_empleado: int
+        self.id_empleado: str
         self.nombre: str
         self.profesion: str
         self.sueldo: int
         self.direccion: str
         self.telefono: str
     
-    def _setIdEmpleado(self, id_empleado:int):
+    def _setIdEmpleado(self, id_empleado:str):
         self.id_empleado = id_empleado
 
     def _getIdEmpleado(self):

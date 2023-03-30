@@ -13,7 +13,7 @@ class EmpleadoDAO():
             values ('{}','{}','{}', '{}', '{}', '{}' )".format(
                 empleado_vo._getIdEmpleado(),
                 empleado_vo._getNombre(),
-                empleado_vo._getProfesion,
+                empleado_vo._getProfesion(),
                 empleado_vo._getSueldo(),
                 empleado_vo._getDireccion(),
                 empleado_vo._getTelefono(),
@@ -21,7 +21,7 @@ class EmpleadoDAO():
         cur.execute(mensaje)
         self.conn.commit()
         cur.close()
-        print('se registro el empleado con exito')
+        print('se registro el empleado con exito !!')
 
     def listaEmpleado(self):
         pass

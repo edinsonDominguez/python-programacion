@@ -14,7 +14,18 @@ class RegistroEmpleado(Frame):
        self._crearFrame()
 
     def _registrar(self):
-        pass
+        emp = Empleado()
+        print(self.txt_id.get())
+
+        emp._setIdEmpleado(self.txt_id.get())   
+        emp._setNombre(self.txt_nombre.get().upper())
+        emp._setProfesion(self.txt_profesion.get().upper())
+        emp._setSueldo(int(self.txt_sueldo.get()))
+        emp._setDireccion(self.txt_direccion.get().upper())
+        emp._setTelefono(self.txt_telefono.get())
+        
+        daoEmpleado = EmpleadoDAO()
+        daoEmpleado.registrarEmpleado(emp)
 
     def _crearFrame(self):
 
@@ -36,27 +47,27 @@ class RegistroEmpleado(Frame):
         lbl = Label(self, text='Profesion')
         lbl.place(x=40, y=150, width=100, height=30)
 
-        self.txt_Profesion = Entry(self)
-        self.txt_Profesion.place(x=160, y=150, width=150, height=30)
+        self.txt_profesion = Entry(self)
+        self.txt_profesion.place(x=160, y=150, width=150, height=30)
         
         lbl = Label(self, text='Sueldo')
         lbl.place(x=40, y=190, width=100, height=30)
 
-        self.txt_Sueldo = Entry(self)
-        self.txt_Sueldo.place(x=160, y=190, width=150, height=30)
+        self.txt_sueldo = Entry(self)
+        self.txt_sueldo.place(x=160, y=190, width=150, height=30)
 
         lbl = Label(self, text='Direccion')
         lbl.place(x=40, y=230, width=100, height=30)
 
-        self.txt_Direccion = Entry(self)
-        self.txt_Direccion.place(x=160, y=230, width=150, height=30)
+        self.txt_direccion = Entry(self)
+        self.txt_direccion.place(x=160, y=230, width=150, height=30)
 
         lbl = Label(self, text='Telefono')
         lbl.place(x=40, y=270, width=100, height=30)
 
-        self.txt_Telefono = Entry(self)
-        self.txt_Telefono.place(x=160, y=270, width=150, height=30)
+        self.txt_telefono = Entry(self)
+        self.txt_telefono.place(x=160, y=270, width=150, height=30)
 
-        btnRegistro = Button(self, text='Registrar', command=self._registrar)
-        btnRegistro.place(x=230, y=320, width=120, height=40)
+        btn_registro = Button(self, text='Registrar', command=self._registrar)
+        btn_registro.place(x=230, y=320, width=120, height=40)
         
