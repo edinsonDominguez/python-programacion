@@ -23,7 +23,7 @@ class RegistroEmpleado(Frame):
         
         daoEmpleado = EmpleadoDAO()
 
-        validacion_bd = daoEmpleado.registrarEmpleado(emp)
+        validacion_bd = daoEmpleado._registrarEmpleado(emp)
         
         if  validacion_bd == 'ok':
             messagebox.showinfo('Registro exitoso !!', 'se registro el empleado correctamente !!')

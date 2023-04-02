@@ -8,7 +8,7 @@ class EmpleadoDAO():
     conn = mysql.connector.connect(host='localhost', port=3306, user='root', passwd='', db='empresa')
 
     # registro de empleados en la base de datos
-    def registrarEmpleado(self, empleado_vo: Empleado):
+    def _registrarEmpleado(self, empleado_vo: Empleado):
         
         control = ''
         try:
@@ -31,7 +31,6 @@ class EmpleadoDAO():
             print(ex)
             control = 'error'
 
-
         return control
 
     # obtiene los datos de los empleados de la base de datos
@@ -47,7 +46,22 @@ class EmpleadoDAO():
 
         return lista
     
-    def _eliminarEmpleado(codigo: str):
+    def _eliminarEmpleado(self, codigo: str):
         control = ''
-            
+        try:
+            mensaje = "DELETE FROM empleado WHERE id_empleado = '{}' ".format(
+                codigo
+            )
+
+            cur = self.conn.cursor()
+            cur.execute(mensaje)
+            self.conn.commit()
+        
+            cur.close()
+            control = 'ok'
+        
+        except Error as ex:
+            print(ex)
+            control = 'error'
+
         return control
