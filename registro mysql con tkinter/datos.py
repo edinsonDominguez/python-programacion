@@ -59,19 +59,23 @@ class InfoEmpleado(Frame):
 
         # obtenemos el codigo del empleado
         codigoEmpleado = self.tabla_empleado.item(self.tabla_empleado.focus(), 'text')
-        
-        control = self.daoEmpleado._eliminarEmpleado(codigoEmpleado)
+        if codigoEmpleado != '':
 
-        if(control == 'ok'):
-            messagebox.showinfo('Empleado eliminado!!', ' Se elimino el empleado correctamente !!')
+            control = self.daoEmpleado._eliminarEmpleado(codigoEmpleado)
 
-        if(control == 'error'):
-            messagebox.showinfo('ERROR !!', 'Error al eliminar el empleado!!')
+            if(control == 'ok'):
+                messagebox.showinfo('Empleado eliminado!!', ' Se elimino el empleado correctamente !!')
 
-        # actualizamos la tabla de empleados
-        self._eliminarLista()
-        listaEmpleado = self.daoEmpleado._listaEmpleado()
+            if(control == 'error'):
+                messagebox.showinfo('ERROR !!', 'Error al eliminar el empleado!!')
 
-        for i in listaEmpleado:
-            self.tabla_empleado.insert('', 'end', text = i[0], values=(i[1], i[2], i[3], i[4]))        
+            # actualizamos la tabla de empleados
+            self._eliminarLista()
+            listaEmpleado = self.daoEmpleado._listaEmpleado()
+
+            for i in listaEmpleado:
+                self.tabla_empleado.insert('', 'end', text = i[0], values=(i[1], i[2], i[3], i[4], i[5]))
+
+        else:
+            messagebox.showinfo('Error de identidad ??', 'No has selecionado ningun empleado!!')       
 
