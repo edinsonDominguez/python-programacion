@@ -1,9 +1,8 @@
 from tkinter import messagebox, Frame, Entry, Label, Button, END
-from dao.registroDAO import EmpleadoDAO
+from dao.DAO import EmpleadoDAO
 from vo.empleado import Empleado
 
 # en esta clase se crea el formulario de registro
-
 class RegistroEmpleado(Frame):
 
     def __init__(self, master=None):
@@ -29,7 +28,8 @@ class RegistroEmpleado(Frame):
         if  validacion_bd == 'ok':
             messagebox.showinfo('Registro exitoso !!', 'se registro el empleado correctamente !!')
             self._limpiar()
-        else:
+            
+        if validacion_bd == 'error':
             messagebox.showinfo('ERROR !!', 'No se pudo registrar el usuario')
 
     def _limpiar(self):
