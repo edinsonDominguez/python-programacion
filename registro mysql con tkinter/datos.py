@@ -46,9 +46,6 @@ class InfoEmpleado(Frame):
         for i in listaEmpleado:
             self.tabla_empleado.insert('', 'end', text = i[0], values=(i[1], i[2], i[3], i[4], i[5]))
 
-        # nos lleva al inicio de la aplicacion
-        btnInicio = Button(self, text='Inicio', command=self.destroy)
-        btnInicio.place(x=780, y=5, width=100, height=25)
 
         #elimina el empleado de la lista
         btn_eliminar = Button(self, text='Eliminar', command=self._eliminarEmpleado)
