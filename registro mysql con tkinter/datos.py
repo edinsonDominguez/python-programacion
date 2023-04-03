@@ -6,6 +6,16 @@ class InfoEmpleado(Frame):
 
     daoEmpleado = EmpleadoDAO()
 
+    # extraemos los datos de la BD
+    listaEmpleado = []
+
+    #def _registro(self):
+    
+    #    listaEmpleado = self.daoEmpleado._listaEmpleado()
+    #    for i in listaEmpleado:
+    #        self.tabla_empleado.insert('', 'end', text = i[0], values=(i[1], i[2], i[3], i[4], i[5]))
+
+
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
@@ -18,9 +28,11 @@ class InfoEmpleado(Frame):
         lbl = Label(self, text='INFORMACION DE EMPLEADOS')
         lbl.place(x=20, y=10, width=200, height=30)
 
+
         # creamos la tabla
         self.tabla_empleado = ttk.Treeview(self)
         self.tabla_empleado['columns'] = ('nombre', 'profesion', 'sueldo', 'direccion', 'telefono')
+
 
         # creamos las columnas
         self.tabla_empleado.column('#0', width=100)
@@ -41,41 +53,45 @@ class InfoEmpleado(Frame):
         self.tabla_empleado.place(x=10, y=50, width=880, height=530)
         
         # llenamos la tabla        
-        listaEmpleado = self.daoEmpleado._listaEmpleado()
-
-        for i in listaEmpleado:
+        self.listaEmpleado = self.daoEmpleado._listaEmpleado()
+        for i in self.listaEmpleado:
             self.tabla_empleado.insert('', 'end', text = i[0], values=(i[1], i[2], i[3], i[4], i[5]))
 
-
+        
         #elimina el empleado de la lista
         btn_eliminar = Button(self, text='Eliminar', command=self._eliminarEmpleado)
         btn_eliminar.place(x=400, y=10, width=120, height=30)
+
+        # nos lleva al formulario de registro de empleado
+        btn_inicio = Button(self, text='Registro', command=self.destroy)
+        btn_inicio.place(x=780, y=5, width=100, height=25)
+
 
     def _eliminarLista(self):
         for i in self.tabla_empleado.get_children():
             self.tabla_empleado.delete(i)
 
-    def _eliminarEmpleado(self):
 
+    def _eliminarEmpleado(self):
+        print('estamos en la metodo _eliminarEmpleado()')
         # obtenemos el codigo del empleado
         codigoEmpleado = self.tabla_empleado.item(self.tabla_empleado.focus(), 'text')
+
         if codigoEmpleado != '':
 
             control = self.daoEmpleado._eliminarEmpleado(codigoEmpleado)
 
             if(control == 'ok'):
                 messagebox.showinfo('Empleado eliminado!!', ' Se elimino el empleado correctamente !!')
+                self._eliminarLista()
+                # actualizamos la tabla de empleados
+               
+                listaEmpleado = self.daoEmpleado._listaEmpleado()
+                for i in listaEmpleado:
+                    self.tabla_empleado.insert('', 'end', text = i[0], values=(i[1], i[2], i[3], i[4], i[5]))
 
             if(control == 'error'):
                 messagebox.showinfo('ERROR !!', 'Error al eliminar el empleado!!')
 
-            # actualizamos la tabla de empleados
-            self._eliminarLista()
-            listaEmpleado = self.daoEmpleado._listaEmpleado()
-
-            for i in listaEmpleado:
-                self.tabla_empleado.insert('', 'end', text = i[0], values=(i[1], i[2], i[3], i[4], i[5]))
-
         else:
-            messagebox.showinfo('Error de identidad ??', 'No has selecionado ningun empleado!!')       
-
+            messagebox.showinfo('Error de identidad ??', 'No has selecionado ningun empleado')

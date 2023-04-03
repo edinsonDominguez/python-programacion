@@ -35,7 +35,9 @@ class EmpleadoDAO():
 
     # obtiene los datos de los empleados de la base de datos
     def _listaEmpleado(self):
-
+        lista = []
+        lista.clear()
+        print('lista: ', len(lista))
         cur = self.conn.cursor()
         mensaje = 'SELECT * FROM empleado'
         

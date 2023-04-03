@@ -1,6 +1,7 @@
 from tkinter import messagebox, Frame, Entry, Label, Button, END
 from dao.DAO import EmpleadoDAO
 from vo.empleado import Empleado
+from datos import InfoEmpleado
 
 # en esta clase se crea el formulario de registro
 class RegistroEmpleado(Frame):
@@ -12,6 +13,12 @@ class RegistroEmpleado(Frame):
        self.config(bg='#A2CAFB')
        self._crearFrame()
 
+    def _infoEmpleado(self):
+        frameDatos = InfoEmpleado(master=self)
+        frameDatos.place(x=0, y=0, width=900, height=600)
+
+        frameDatos.place(x=0, y=0, width=900, height=600)
+        
     def _registrar(self):
         emp = Empleado()
         emp._setIdEmpleado(self.txt_id.get())   
@@ -85,3 +92,6 @@ class RegistroEmpleado(Frame):
         btn_registro = Button(self, text='Registrar', command=self._registrar)
         btn_registro.place(x=230, y=320, width=120, height=40)
         
+        # nos lleva a la tabla de empleados
+        btn_info = Button(self, text='Ver empleados >>', command=self._infoEmpleado)
+        btn_info.place(x=650, y=5, width=120, height=25)
