@@ -9,13 +9,6 @@ class InfoEmpleado(Frame):
     # extraemos los datos de la BD
     listaEmpleado = []
 
-    #def _registro(self):
-    
-    #    listaEmpleado = self.daoEmpleado._listaEmpleado()
-    #    for i in listaEmpleado:
-    #        self.tabla_empleado.insert('', 'end', text = i[0], values=(i[1], i[2], i[3], i[4], i[5]))
-
-
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
@@ -56,7 +49,6 @@ class InfoEmpleado(Frame):
         self.listaEmpleado = self.daoEmpleado._listaEmpleado()
         for i in self.listaEmpleado:
             self.tabla_empleado.insert('', 'end', text = i[0], values=(i[1], i[2], i[3], i[4], i[5]))
-
         
         #elimina el empleado de la lista
         btn_eliminar = Button(self, text='Eliminar', command=self._eliminarEmpleado)
@@ -65,7 +57,6 @@ class InfoEmpleado(Frame):
         # nos lleva al formulario de registro de empleado
         btn_inicio = Button(self, text='Registro', command=self.destroy)
         btn_inicio.place(x=780, y=5, width=100, height=25)
-
 
     def _eliminarLista(self):
         for i in self.tabla_empleado.get_children():
